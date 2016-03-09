@@ -24,7 +24,7 @@
 			onclick="location.href='<spring:url value="/index"/>'">Home</button>
 		
 	</form>
-	<a href="${pageContext.request.contextPath }/register"
+	<a href="${pageContext.request.contextPath }/registrationForm"
 		class="btn btn-primary">Register</a>
 	home page TBI
 </body>
