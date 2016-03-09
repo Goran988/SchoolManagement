@@ -4,11 +4,9 @@ import org.school.dao.generic.GenericDaoImpl;
 import org.school.dao.interfaces.ProfessorInterface;
 import org.school.model.Professor;
 import org.school.model.Student;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author User
- *
- */
+@Repository
 public class ProfessorImpl extends GenericDaoImpl<Professor, Long> implements ProfessorInterface {
 
 	public ProfessorImpl() {

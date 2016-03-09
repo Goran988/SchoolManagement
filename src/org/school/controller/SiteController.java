@@ -33,9 +33,6 @@ public class SiteController {
 	public String returnTestTwo() {
 		return "test2";
 	}
-	@RequestMapping("/login")
-	public String returnLoggedIn(){
-		return "login.jsp";
-	}
+	
 
 }

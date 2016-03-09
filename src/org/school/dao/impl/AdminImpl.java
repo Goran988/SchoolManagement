@@ -5,9 +5,11 @@ import java.util.List;
 import org.school.dao.generic.GenericDaoImpl;
 import org.school.dao.interfaces.AdminInterface;
 import org.school.dao.interfaces.CourseInterface;
+import org.school.dao.interfaces.ProfessorInterface;
 import org.school.model.Admin;
 import org.school.model.Course;
 import org.school.model.Professor;
+import org.school.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Repository;
 public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInterface {
 	@Autowired
 	private CourseInterface courseInterface;
+	@Autowired
+	private ProfessorInterface professorInterface;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -63,21 +67,30 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 	@Override
 	public void addNewCourse(Course course) {
 		courseInterface.save(course);
-		
+
 	}
 
 	@Override
 	public void deleteInterface(Course course) {
 		courseInterface.delete(course);
-		
+
 	}
 
 	@Override
 	public void assignCourse(Professor professor, Course course) {
 		professor.setTeachingClass(course);
-		
+
 	}
 
+	@Override
+	public void addNewProfessor(Professor professor) {
+		professorInterface.save(professor);
 
-	
+	}
+
+	@Override
+	public void approveStudent(Student student) {
+		student.setEnabled(true);
+	}
+
 }

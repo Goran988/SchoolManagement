@@ -9,11 +9,11 @@
 <title>Wellcome</title>
 </head>
 <body>
-	Wellcome to our School Management Site Please log in to start
+	Wellcome to our School Management Site<br> Please log in to continue
 	<br>
 	<form action="login" method="POST">
-		<br> <input type="text" class="form-control" name="username"
-			placeholder="Username"> <br> <input type="password"
+		<br>Username <input type="text" class="form-control" name="username"
+			placeholder="Username"> <br>Password <input type="password"
 			class="form-control" name="password" placeholder="Password">
 		<br> <label> <input type="checkbox" name="remember_me">
 			Remember me
@@ -22,11 +22,10 @@
 		<button type="submit">Sign in</button>
 		<button type="button"
 			onclick="location.href='<spring:url value="/index"/>'">Home</button>
-		<c:if test="${param.error==true}">
-			<c:set value="colour alert alert-danger" var="msgdiv" />
-			<c:set value="Error logging in." var="message" />
-		</c:if>
+		
 	</form>
+	<a href="${pageContext.request.contextPath }/register"
+		class="btn btn-primary">Register</a>
 	home page TBI
 </body>
 </html>
