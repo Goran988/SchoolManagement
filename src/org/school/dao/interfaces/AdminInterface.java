@@ -13,7 +13,7 @@ public interface AdminInterface extends GenericDao<Admin, Long> {
 
 	void addNewCourse(Course course);
 
-	void deleteInterface(Course course);
+	void deleteCourse(Course course);
 
 	void assignCourse(Professor professor, Course course);
 

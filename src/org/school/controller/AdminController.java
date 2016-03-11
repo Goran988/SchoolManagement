@@ -7,6 +7,7 @@ import org.school.dao.interfaces.StudentInterface;
 import org.school.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,11 +19,8 @@ public class AdminController {
 	private StudentInterface studentImpl;
 
 	@RequestMapping("/admin")
-	public String showAdmin(){
-		List<Student> list=adminImpl.getAllPending();
-		for(Student s:list){
-			System.out.println(s);
-		}
+	public String showAdmin(Model model) {
+
 		return "admin";
 	}
 }

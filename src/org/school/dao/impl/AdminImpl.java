@@ -65,11 +65,6 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 		super.delete(entity);
 	}
 
-	@Override
-	public List<Admin> getAll() {
-		// TODO Auto-generated method stub
-		return super.getAll();
-	}
 
 	@Override
 	public void addNewCourse(Course course) {
@@ -78,7 +73,7 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 	}
 
 	@Override
-	public void deleteInterface(Course course) {
+	public void deleteCourse(Course course) {
 		courseInterface.delete(course);
 
 	}
