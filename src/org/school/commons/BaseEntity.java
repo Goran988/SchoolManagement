@@ -11,8 +11,8 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="users")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class BaseEntity implements Serializable {
 	@Id
 	@GeneratedValue
@@ -25,7 +25,6 @@ public class BaseEntity implements Serializable {
 	private boolean enabled;
 	private String authority;
 
-	
 	public long getId() {
 		return id;
 	}
@@ -80,6 +79,12 @@ public class BaseEntity implements Serializable {
 
 	public void setAuthority(String authority) {
 		this.authority = authority;
+	}
+
+	@Override
+	public String toString() {
+		return "BaseEntity [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", enabled=" + enabled + ", authority=" + authority + "]";
 	}
 
 }

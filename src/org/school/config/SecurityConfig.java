@@ -32,12 +32,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/test1").permitAll()
 		.antMatchers("/register").permitAll()
 		.antMatchers("/registrationForm").permitAll()
+		.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/home").authenticated()
 		.antMatchers("/test2").authenticated()
 		.antMatchers("/").permitAll()
 		.anyRequest().denyAll()
 		.and()
-		.formLogin()
-		.defaultSuccessUrl("/home");
+		.formLogin().loginPage("/login")
+		.usernameParameter("username")
+		.passwordParameter("password")
+		.defaultSuccessUrl("/home")
+		.and()
+		.logout()
+        .deleteCookies("remove")
+        .invalidateHttpSession(true)
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/home")
+    .permitAll();
 	}
 
 }

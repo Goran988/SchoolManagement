@@ -2,10 +2,13 @@ package org.school.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.school.dao.generic.GenericDaoImpl;
 import org.school.dao.interfaces.AdminInterface;
 import org.school.dao.interfaces.CourseInterface;
 import org.school.dao.interfaces.ProfessorInterface;
+import org.school.dao.interfaces.StudentInterface;
 import org.school.model.Admin;
 import org.school.model.Course;
 import org.school.model.Professor;
@@ -21,16 +24,20 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 	@Autowired
 	private ProfessorInterface professorInterface;
 	@Autowired
+	StudentInterface studentInterface;
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	public AdminImpl() {
 		super(Admin.class);
 	}
 
-	@Override
 	public Admin getUserByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria criteria = getSession().createCriteria(Admin.class);
+		criteria.add(Restrictions.eq("username", username));
+		Admin admin = (Admin) criteria.uniqueResult();
+		return admin;
+
 	}
 
 	@Override
@@ -91,6 +98,14 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 	@Override
 	public void approveStudent(Student student) {
 		student.setEnabled(true);
+		studentInterface.update(student);
+	}
+
+	@Override
+	public List<Student> getAllPending() {
+		Criteria criteria = getSession().createCriteria(Student.class);
+		criteria.add(Restrictions.eq("enabled", false));
+		return criteria.list();
 	}
 
 }

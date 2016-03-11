@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -16,10 +17,8 @@ public class Student extends BaseEntity {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	Set<Course> classes = new HashSet<>();
-
 	@ManyToMany
 	Set<Course> appliedForClasses = new HashSet<>();
-
 	@OneToMany
 	Set<Grade> grades = new TreeSet<>();
 
@@ -46,4 +45,5 @@ public class Student extends BaseEntity {
 	public void setGrades(Set<Grade> grades) {
 		this.grades = grades;
 	}
+
 }
