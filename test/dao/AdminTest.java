@@ -37,8 +37,8 @@ public class AdminTest {
 
 	@Test
 	public void getUserByUsername() {
-		Mockito.when(adminInterface.getUserByUsername(username)).thenReturn(admin);
-		assertEquals(admin, adminInterface.getUserByUsername(username));
+		Mockito.when(adminInterface.getAdminByUsername(username)).thenReturn(admin);
+		assertEquals(admin, adminInterface.getAdminByUsername(username));
 	}
 
 	@Test

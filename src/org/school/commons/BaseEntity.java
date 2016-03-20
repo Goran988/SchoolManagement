@@ -25,6 +25,20 @@ public class BaseEntity implements Serializable {
 	private boolean enabled;
 	private String authority;
 
+	public BaseEntity() {
+	}
+
+	public BaseEntity(String username, String password, String firstName, String lastName, boolean enabled,
+			String authority) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.enabled = enabled;
+		this.authority = authority;
+	}
+
 	public long getId() {
 		return id;
 	}

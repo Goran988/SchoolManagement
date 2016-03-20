@@ -32,7 +32,7 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 		super(Admin.class);
 	}
 
-	public Admin getUserByUsername(String username) {
+	public Admin getAdminByUsername(String username) {
 		Criteria criteria = getSession().createCriteria(Admin.class);
 		criteria.add(Restrictions.eq("username", username));
 		Admin admin = (Admin) criteria.uniqueResult();
@@ -49,22 +49,18 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 
 	@Override
 	public Admin get(Long id) {
-		// TODO Auto-generated method stub
 		return super.get(id);
 	}
 
 	@Override
 	public Admin update(Admin entity) {
-		// TODO Auto-generated method stub
 		return super.update(entity);
 	}
 
 	@Override
 	public void delete(Admin entity) {
-		// TODO Auto-generated method stub
 		super.delete(entity);
 	}
-
 
 	@Override
 	public void addNewCourse(Course course) {
@@ -91,9 +87,13 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 	}
 
 	@Override
-	public void approveStudent(Student student) {
-		student.setEnabled(true);
-		studentInterface.update(student);
+	public void approveStudent(Student student, String decision) {
+		if (decision.equals("aprove")) {
+			student.setEnabled(true);
+			studentInterface.update(student);
+		} else if (decision.equals("reject")) {
+			studentInterface.delete(student);
+		}
 	}
 
 	@Override
@@ -101,6 +101,13 @@ public class AdminImpl extends GenericDaoImpl<Admin, Long> implements AdminInter
 		Criteria criteria = getSession().createCriteria(Student.class);
 		criteria.add(Restrictions.eq("enabled", false));
 		return criteria.list();
+	}
+
+	@Override
+	public void removePending(Student student) {
+		// getAllPending().remove(student);
+		studentInterface.delete(student);
+
 	}
 
 }

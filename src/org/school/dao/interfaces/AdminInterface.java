@@ -9,7 +9,7 @@ import org.school.model.Professor;
 import org.school.model.Student;
 
 public interface AdminInterface extends GenericDao<Admin, Long> {
-	Admin getUserByUsername(String username);
+	Admin getAdminByUsername(String username);
 
 	void addNewCourse(Course course);
 
@@ -21,5 +21,7 @@ public interface AdminInterface extends GenericDao<Admin, Long> {
 
 	List<Student> getAllPending();
 
-	void approveStudent(Student students);
+	void approveStudent(Student students, String decision);
+
+	void removePending(Student student);
 }

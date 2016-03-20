@@ -22,6 +22,19 @@ public class Student extends BaseEntity {
 	@OneToMany
 	Set<Grade> grades = new TreeSet<>();
 
+	public Student() {
+		//default constructor
+	}
+
+	public Student(BaseEntity baseEntity) {
+		this();
+		this.setId(baseEntity.getId());
+		this.setUsername(baseEntity.getUsername());
+		this.setPassword(baseEntity.getPassword());
+		this.setFirstName(baseEntity.getFirstName());
+		this.setLastName(baseEntity.getLastName());
+	}
+
 	public Set<Course> getClasses() {
 		return classes;
 	}

@@ -27,22 +27,22 @@ public class SiteController {
 
 	@RequestMapping({ "/", "home" })
 	public String getHome() {
-//		  Admin testAdmin=new Admin();
-//		  testAdmin.setFirstName("Pajdo");
-//		  testAdmin.setLastName("Pajdic");
-//		  testAdmin.setUsername("goran");
-//		  testAdmin.setPassword("goran");
-//		  testAdmin.setEnabled(true);
-//		  testAdmin.setAuthority("ROLE_ADMIN");
-//		  adminImpl.save(testAdmin);
+		// Admin testAdmin=new Admin();
+		// testAdmin.setFirstName("Pajdo");
+		// testAdmin.setLastName("Pajdic");
+		// testAdmin.setUsername("goran");
+		// testAdmin.setPassword("goran");
+		// testAdmin.setEnabled(true);
+		// testAdmin.setAuthority("ROLE_ADMIN");
+		// adminImpl.save(testAdmin);
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof UserDetails) {
 			String authority = ((UserDetails) principal).getAuthorities().toArray()[0].toString();
-			if (authority.equals("ROLE_STUDENT")) {
+			if ("ROLE_STUDENT".equals(authority)) {
 				return "student";
-			} else if (authority.equals("ROLE_PROFESSOR")) {
+			} else if ("ROLE_PROFESSOR".equals(authority)) {
 				return "professor";
-			} else if (authority.equals("ROLE_ADMIN")) {
+			} else if ("ROLE_ADMIN".equals(authority)) {
 				return "redirect:admin";
 			}
 		}
@@ -60,14 +60,14 @@ public class SiteController {
 
 	@RequestMapping("/test2")
 	public String returnTestTwo() {
-		// Student student = new Student();
-		// student.setFirstName("Student");
-		// student.setLastName("StudentPrezime");
-		// student.setUsername("student");
-		// student.setPassword("student");
-		// student.setAuthority("ROLE_STUDENT");
-		// student.setEnabled(true);
-		// studentImpl.save(student);
+		Student student = new Student();
+		student.setFirstName("Student");
+		student.setLastName("StudentPrezime");
+		student.setUsername("student");
+		student.setPassword("student");
+		student.setAuthority("ROLE_STUDENT");
+		student.setEnabled(false);
+		studentImpl.save(student);
 		return "test2";
 	}
 

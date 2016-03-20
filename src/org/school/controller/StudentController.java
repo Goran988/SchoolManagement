@@ -20,7 +20,7 @@ public class StudentController {
 	private StudentInterface studentImpl;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String returnRegister(Model model, Student student, Principal principal) {
+	public String returnRegister(Model model, Student student) {
 		model.addAttribute("student", student);
 		student.setAuthority("ROLE_STUDENT");
 		student.setEnabled(false);
